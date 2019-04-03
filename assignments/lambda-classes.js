@@ -40,7 +40,16 @@ class Instructor extends Person {
     grade(studentObj, subject) {
         console.log(`${studentObj.name} recieves a perfect score on ${subject}`);
     }
+    updateGrade(studentObj) {
+        const fate = Math.random();
+        if (fate > .5) {
+            return studentObj.grade += 1;
+        } else {
+            return studentObj.grade -= 1;
+        }
+    }
 }
+
 
 const camPope = new Instructor({
     name: 'Cameron',
@@ -71,6 +80,7 @@ class Student extends Person {
         this.previousBackground = stAttr.previousBackground;
         this.className = stAttr.className;
         this.favSubjects = stAttr.favSubjects;
+        this.grade = stAttr.grade;
     }
     listsSubjects() {
         console.log(`${this.favSubjects}`);
@@ -80,6 +90,13 @@ class Student extends Person {
     }
     sprintChallenge(subject) {
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
+    }
+    graduate() {
+        if(this.grade > 70) {
+            return `${this.name} you are ready to walk the walk, and do the Lambda shuffle!`
+        } else {
+            return `${this.name} you need to redo your challenge and maybe you'll be ready to shuffle:(`
+        }
     }
 }
 
@@ -91,7 +108,8 @@ const ali = new Student({
     gender: 'Male',
     previousBackground: 'codecademy pro',
     className: 'pt5',
-    favSubjects: ['react', 'python', 'c']
+    favSubjects: ['react', 'python', 'c'],
+    grade: 100
 })
 
 const jenny = new Student({
@@ -101,14 +119,22 @@ const jenny = new Student({
     gender: 'Female',
     previousBackground: 'none',
     className: 'pt10',
-    favSubjects: ['js', 'python']
-
+    favSubjects: ['js', 'python'],
+    grade: 100
 })
 
 shelly.grade(ali, 'java')
 ali.listsSubjects();
 jenny.PRAssignment(jenny.favSubjects[0])
 ali.sprintChallenge(ali.favSubjects[2]);
+
+console.log(camPope.updateGrade(ali));
+console.log(camPope.updateGrade(ali));
+console.log(camPope.updateGrade(ali));
+console.log(ali.graduate());
+console.log(jenny.graduate());
+
+
 
 class ProjectManager extends Instructor {
     constructor(pMAttr) {
@@ -149,4 +175,8 @@ const chaya = new ProjectManager({
 })
 cookiemonsta89.standUp('webpt5');
 chaya.debugsCode(ali, ali.favSubjects[2]);
+console.log(cookiemonsta89.updateGrade(ali));
+console.log(cookiemonsta89.updateGrade(ali));
+
+
  
